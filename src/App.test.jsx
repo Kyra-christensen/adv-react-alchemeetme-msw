@@ -15,7 +15,7 @@ const user = {
   id: 1,
   created_at: '2021-12-13T00:17:29+00:00',
   // 🚨 Add a name here
-  name: 'Lilo',
+  name: 'Vonta',
   avatar: 'https://thumbs.gfycat.com/NiceRequiredGrunion-size_restricted.gif',
   header: 'https://static.wikia.nocookie.net/naruto/images/5/50/Team_Kakashi.png',
   likes: ['React', 'Anime', 'Traveling', 'Living', 'Tower Defense Games', 'Card Games'],
@@ -25,7 +25,7 @@ const user = {
 
 // 🚨 Create your server
 const server = setupServer(
-  rest.get('https://uzgiamkrbapxufnwdrja.supabase.co/rest/v1/users', (req, res, ctx) => {
+  rest.get(`${process.env.REACT_APP_SUPABASE_URL}/rest/v1/users`, (req, res, ctx) => {
     return res(ctx.json([user]));
   })
 );
@@ -62,7 +62,7 @@ test('Should render the header with Sasuke 🌬️🔥', async () => {
 
   // 🚨 Use the server to change the response for this test
   server.use(
-    rest.get('https://uzgiamkrbapxufnwdrja.supabase.co/rest/v1/users', (req, res, ctx) => {
+    rest.get(`${process.env.REACT_APP_SUPABASE_URL}/rest/v1/users`, (req, res, ctx) => {
       return res(ctx.json([sasuke]));
     })
   );
